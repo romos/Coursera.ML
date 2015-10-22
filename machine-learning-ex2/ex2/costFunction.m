@@ -20,13 +20,37 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+%% Calculate J(theta):
+% % First way to calculate J. Non-vectorized [loop] implementation
+% for i = 1:m,
+%     thetaXi = X(i,:) * theta;
+%     hxi = sigmoid(thetaXi);
+%     temp = y(i)*log(hxi) + (1-y(i))*log(1-hxi);
+%     J = J + temp;
+% end;
+% J = -1/m * J;
 
+% Second way to calculate J. Vectorized implementation
+Xtheta = X * theta;
+hx = sigmoid(Xtheta);
+J = y'*log(hx) + (1-y')*log(1-hx);
+J = -1/m * J;
 
+%% Calculate Gradient:
+% % First way to calculate Gradient. Non-vectorized [loop] implementation
+% Xtheta = X * theta;
+% hx = sigmoid(Xtheta);
+% for j=1:size(theta),
+%     for i=1:m,
+%         grad(j) = grad(j) + (hx(i)-y(i))*X(i,j);
+%     end;
+%     grad(j) = 1/m * grad(j);
+% end;
 
-
-
-
+% % Second way to calculate Gradient. Vectorized implementation
+Xtheta = X * theta;
+hx = sigmoid(Xtheta);
+grad = 1/m * ( X' * (hx - y) );
 
 % =============================================================
-
 end

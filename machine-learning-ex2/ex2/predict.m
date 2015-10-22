@@ -15,13 +15,24 @@ p = zeros(m, 1);
 %               You should set p to a vector of 0's and 1's
 %
 
+Xtheta = X * theta;
+hx = sigmoid(Xtheta);
 
+sign = 0.5 * ones(m,1);
 
-
-
-
+p = arrayfun(@(a,b) compare(a,b),hx,sign);
 
 % =========================================================================
 
 
+end
+
+function c = compare(a,b)
+if a>b
+    c = 1;
+    return
+else
+    c = 0;
+    return
+end
 end
