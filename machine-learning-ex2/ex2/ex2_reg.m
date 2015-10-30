@@ -117,3 +117,15 @@ p = predict(theta, X);
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);
 
 
+%% my personal probs:
+x1 = -0.4;
+x2 = -0.1;
+
+hold on;
+plot(x1,x2,'rx','MarkerSize',15,'LineWidth',2);
+hold off
+
+prob = sigmoid(mapFeature(x1,x2)*theta);
+fprintf('%f\n\n',prob);
+
+
