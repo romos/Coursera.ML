@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)https://share.coursera.org/wiki/index.php/ML:Machine_Learning_System_Design -->
+<html lang="en" dir="ltr" class="client-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ML:Machine Learning System Design - Coursera</title>
+<meta charset="UTF-8">
+<meta name="generator" content="MediaWiki 1.18.1">
+<link rel="alternate" type="application/x-wiki" title="Edit" href="https://share.coursera.org/wiki/index.php?title=ML:Machine_Learning_System_Design&action=edit">
+<link rel="edit" title="Edit" href="https://share.coursera.org/wiki/index.php?title=ML:Machine_Learning_System_Design&action=edit">
+<link rel="shortcut icon" href="https://share.coursera.org/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="https://share.coursera.org/wiki/opensearch_desc.php" title="Coursera (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://share.coursera.org/wiki/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="Coursera Atom feed" href="https://share.coursera.org/wiki/index.php?title=Special:RecentChanges&feed=atom">
+<link rel="stylesheet" href="./ML_Machine Learning System Design - Coursera_files/load.php">
+<link rel="stylesheet" href="./ML_Machine Learning System Design - Coursera_files/load(1).php">
+<link rel="stylesheet" href="./ML_Machine Learning System Design - Coursera_files/print.css" media="print">
+<link rel="stylesheet" href="./ML_Machine Learning System Design - Coursera_files/cavendish.css" media="screen">
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/wiki/skins/cavendish/IE50Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/wiki/skins/cavendish/IE55Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/cavendish/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/cavendish/IE70Fixes.css?303" media="screen" /><![endif]-->
+<link rel="stylesheet" href="./ML_Machine Learning System Design - Coursera_files/bootstrap-wrapped.css" media="screen"><style>#header h6 a { background: transparent no-repeat; width:322px;height:53px;}</style><link type="text/css" media="all" rel="stylesheet" href="./ML_Machine Learning System Design - Coursera_files/jquery.makeCollapsible.css"><link type="text/css" media="all" rel="stylesheet" href="./ML_Machine Learning System Design - Coursera_files/jquery.messageBox.css"><meta name="ResourceLoaderDynamicStyles" content="">
+<style>a:lang(ar), a:lang(ckb), a:lang(fa),a:lang(kk-arab), a:lang(mzn), a:lang(ps), a:lang(ur) { text-decoration: none; }
+a.new, #quickbar a.new { color: #ba0000; }
+
+</style>
+<script src="./ML_Machine Learning System Design - Coursera_files/load(2).php"></script><script src="./ML_Machine Learning System Design - Coursera_files/load(3).php"></script>
+<script>if(window.mw){
+	mw.config.set({"wgCanonicalNamespace": "ML", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 518, "wgPageName": "ML:Machine_Learning_System_Design", "wgTitle": "Machine Learning System Design", "wgCurRevisionId": 32710, "wgArticleId": 111, "wgIsArticle": true, "wgAction": "view", "wgUserName": "Aac245040c078bc7d70b587bbbb7c732", "wgUserGroups": ["*", "user", "autoconfirmed"], "wgCategories": ["ML:Lecture Notes"], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script><script>if(window.mw){
+	mw.loader.load(["mediawiki.page.startup"]);
+}
+</script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/load(4).php"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/jquery.client.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/mediawiki.page.startup.js"></script>
+<style type="text/css">#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-family: serif; font-style: normal; font-size: 90%}
+.MathJax_Preview {color: #888888}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-family: serif; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; border: 0; padding: 0; margin: 0}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0 !important; padding: 0 !important; margin: 0 !important; vertical-align: 0 !important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap}
+.MathJax img {display: inline ! important}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax .MathJax_HitBox {cursor: text}
+#MathJax_Tooltip * {filter: none; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('https://d2265nx4vomwra.cloudfront.net/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf')}
+@font-face {font-family: MathJax_Main; src: url('https://d2265nx4vomwra.cloudfront.net/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf'); font-weight: bold}
+@font-face {font-family: MathJax_Main; src: url('https://d2265nx4vomwra.cloudfront.net/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf'); font-style: italic}
+@font-face {font-family: MathJax_Math; src: url('https://d2265nx4vomwra.cloudfront.net/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf'); font-style: italic}
+@font-face {font-family: MathJax_Caligraphic; src: url('https://d2265nx4vomwra.cloudfront.net/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf')}
+@font-face {font-family: MathJax_Size1; src: url('https://d2265nx4vomwra.cloudfront.net/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf')}
+@font-face {font-family: MathJax_Size2; src: url('https://d2265nx4vomwra.cloudfront.net/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf')}
+@font-face {font-family: MathJax_Size3; src: url('https://d2265nx4vomwra.cloudfront.net/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf')}
+@font-face {font-family: MathJax_Size4; src: url('https://d2265nx4vomwra.cloudfront.net/MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf')}
+#MathJax_getScales {font-family: MathJax_Main,MathJax_Size1,MathJax_AMS}
+.MathJax .math span {font-family: MathJax_Main,MathJax_Size1,MathJax_AMS}
+</style></head>
+<body class="mediawiki ltr sitedir-ltr ns-518 ns-subject page-ML_Machine_Learning_System_Design action-view skin-cavendish"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+<div id="topbar">
+    <div class="topbar-inner">
+        <div class="container-fluid">
+            <a target="_new" href="http://www.coursera.org/" class="brand">Coursera <span style="background-color:#387690;padding-top:100px" class="label warning">Beta</span></a>
+            <ul class="nav secondary-nav">
+                <li style="padding: 10px 10px 11px; color:#BFBFBF; font-size:14px; border-right: solid 1px #333">Roman Oderov </li>
+                <li><a href="https://www.coursera.org/landing/contact.php">Contact Us</a></li>
+                <li><a href="https://share.coursera.org/wiki/index.php/Special:Contributions/Aac245040c078bc7d70b587bbbb7c732">
+		             My Contributions</a></li>
+                <li><a href="https://share.coursera.org/wiki/index.php?title=Special:UserLogout&returnto=ML%3AMachine+Learning+System+Design">
+		             Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="internal"></div>
+<!-- Skin-Version: 1.2.0 + Coursera -->
+<div id="globalWrapper">
+
+	<div id="p-personal" class="portlet">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+                        			
+			</ul>
+		</div>
+	</div>
+
+	<div id="header">
+		<a name="top" id="contentTop"></a>
+		<h6>
+		<a href="https://share.coursera.org/wiki/index.php/Main_Page" title="Main Page">ML:Machine Learning System Design - Coursera</a></h6>
+		<div id="p-cactions" class="portlet"><ul>
+    
+                 <li id="ca-nstab-ml" class="selected"><a href="./ML_Machine Learning System Design - Coursera_files/ML_Machine Learning System Design - Coursera.html">ML</a></li>
+                 <li id="ca-edit"><a href="https://share.coursera.org/wiki/index.php?title=ML:Machine_Learning_System_Design&action=edit" title="You can edit this page. Please use the preview button before saving">Edit</a></li>
+                 <li id="ca-history"><a href="https://share.coursera.org/wiki/index.php?title=ML:Machine_Learning_System_Design&action=history" title="Past revisions of this page">History</a></li>            </ul></div>
+				<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="https://share.coursera.org/wiki/index.php" id="searchform">
+				<input type="hidden" name="title" value="Special:Search">
+				<input type="search" name="search" title="Search Coursera [alt-f]" accesskey="f" id="searchInput">
+				<input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchGoButton" class="searchButton">&nbsp;
+				<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton">
+			</form>
+		</div>
+	</div>
+	</div>
+
+	<div id="mBody">
+	
+		<div id="side">
+			<div id="nav">
+	<div class="generated-sidebar portlet" id="p-Navigation">
+		<h5>Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage-description"><a href="https://share.coursera.org/wiki/index.php/Main_Page" title="Visit the main page [z]" accesskey="z">Main page</a></li>
+				<li id="n-recentchanges"><a href="https://share.coursera.org/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-help"><a href="https://share.coursera.org/wiki/index.php/Help:Editing" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-Courses">
+		<h5>Courses</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-List-of-courses"><a href="https://share.coursera.org/wiki/index.php/Courses">List of courses</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-Contribute">
+		<h5>Contribute</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Video-Subtitles"><a href="https://share.coursera.org/wiki/index.php/Video_Subtitles">Video Subtitles</a></li>
+				<li id="n-Third-party-Tools"><a href="https://share.coursera.org/wiki/index.php/Third-party_Tools">Third-party Tools</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-upload"><a href="https://share.coursera.org/wiki/index.php/Special:Upload" title="Upload files [u]" accesskey="u">Upload file</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+		</div><!-- end of SIDE div -->
+		<div id="column-content">
+			<div id="content"><div id="mw-js-message" class="js-messagebox" style="display: none;"></div>
+				<a id="top"></a>
+	        		        	<h1 id="firstHeading" class="firstHeading">ML:Machine Learning System Design</h1>
+				<div id="bodyContent">
+		            <h3 id="siteSub">From Coursera</h3>
+		            <div id="contentSub"></div>
+		            		            		            <div id="jump-to-nav">Jump to: <a href="https://share.coursera.org/wiki/index.php/ML:Machine_Learning_System_Design#column-one">navigation</a>, <a href="https://share.coursera.org/wiki/index.php/ML:Machine_Learning_System_Design#searchInput">search</a></div>					<!-- start content -->
+					<div lang="en" dir="ltr" class="mw-content-ltr"><table id="toc" class="toc"><tbody><tr><td><div id="toctitle"><h2>Contents</h2><span class="toctoggle">&nbsp;[<a href="https://share.coursera.org/wiki/index.php/ML:Machine_Learning_System_Design#" class="internal" id="togglelink">hide</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1"><a href="https://share.coursera.org/wiki/index.php/ML:Machine_Learning_System_Design#Prioritizing_What_to_Work_On"><span class="tocnumber">1</span> <span class="toctext">Prioritizing What to Work On</span></a></li>
+<li class="toclevel-1"><a href="https://share.coursera.org/wiki/index.php/ML:Machine_Learning_System_Design#Error_Analysis"><span class="tocnumber">2</span> <span class="toctext">Error Analysis</span></a></li>
+<li class="toclevel-1"><a href="https://share.coursera.org/wiki/index.php/ML:Machine_Learning_System_Design#Error_Metrics_for_Skewed_Classes"><span class="tocnumber">3</span> <span class="toctext">Error Metrics for Skewed Classes</span></a></li>
+<li class="toclevel-1"><a href="https://share.coursera.org/wiki/index.php/ML:Machine_Learning_System_Design#Trading_Off_Precision_and_Recall"><span class="tocnumber">4</span> <span class="toctext">Trading Off Precision and Recall</span></a></li>
+<li class="toclevel-1"><a href="https://share.coursera.org/wiki/index.php/ML:Machine_Learning_System_Design#Data_for_Machine_Learning"><span class="tocnumber">5</span> <span class="toctext">Data for Machine Learning</span></a></li>
+<li class="toclevel-1"><a href="https://share.coursera.org/wiki/index.php/ML:Machine_Learning_System_Design#Quiz_instructions"><span class="tocnumber">6</span> <span class="toctext">Quiz instructions</span></a></li>
+</ul>
+</td></tr></tbody></table>
+<h1> <span class="mw-headline" id="Prioritizing_What_to_Work_On">Prioritizing What to Work On</span></h1>
+<p>Different ways we can approach a machine learning problem:
+</p><ul><li> Collect lots of data (for example "honeypot" project but doesn't always work)
+</li><li> Develop sophisticated features (for example: using email header data in spam emails)
+</li><li> Develop algorithms to process your input in different ways (recognizing misspellings in spam).<p></p>
+</li></ul>
+
+<p>It is difficult to tell which of the options will be helpful.</p>
+<h1> <span class="mw-headline" id="Error_Analysis">Error Analysis</span></h1>
+<p>The recommended approach to solving machine learning problems is:</p>
+<ul>
+<li>Start with a simple algorithm, implement it quickly, and test it early.</li>
+<li>Plot learning curves to decide if more data, more features, etc. will help</li>
+<li>Error analysis: manually examine the errors on examples in the cross validation set and try to spot a trend.</li>
+</ul>
+<p>It's important to get error results as a single, numerical value. Otherwise it is difficult to assess your algorithm's performance.</p>
+<p>You may need to process your input before it is useful. For example, if your input is a set of words, you may want to treat the same word with different forms (fail/failing/failed) as one word, so must use "stemming software" to recognize them all as one.</p>
+<h1> <span class="mw-headline" id="Error_Metrics_for_Skewed_Classes">Error Metrics for Skewed Classes</span></h1>
+<p>It is sometimes difficult to tell whether a reduction in error is actually an improvement of the algorithm.</p>
+<ul>
+<li>For example: In predicting a cancer diagnoses where 0.5% of the examples have cancer, we find our learning algorithm has a 1% error. However, if we were to simply classify every single example as a 0, then our error would reduce to 0.5% even though we did not improve the algorithm.</li>
+</ul>
+<p>This usually happens with <strong>skewed classes</strong>; that is, when our class is very rare in the entire data set.</p>
+<p>For this we can use <strong>Precision/Recall</strong>.</p>
+<blockquote>
+  <p>Predicted: 1, Actual: 1 --- True positive</p>
+  <p>Predicted: 0, Actual: 0 --- True negative</p>
+  <p>Predicted: 0, Actual, 1 --- False negative</p>
+  <p>Predicted: 1, Actual: 0 --- False positive</p>
+</blockquote>
+<p><strong>Precision</strong>: of all patients we predicted where <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-8"><span style="display: inline-block; position: relative; width: 2.262em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.882em 1000em 3.11em -0.515em);"><span class="mrow" id="MathJax-Span-9"><span class="mi" id="MathJax-Span-10" style="font-family: MathJax_Math; font-style: italic;">y</span><span class="mo" id="MathJax-Span-11" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mn" id="MathJax-Span-12" style="font-family: MathJax_Main; padding-left: 0.278em;">1</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.097em; vertical-align: -0.258em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-1">y = 1</script>, what fraction actually has cancer?</p>
+<p><span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-13"><span style="display: inline-block; position: relative; width: 31.071em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.187em 1000em 3.793em -0.416em);"><span class="mrow" id="MathJax-Span-14"><span class="mrow" id="MathJax-Span-15"><span class="mfrac" id="MathJax-Span-16" style="padding-left: 0.12em; padding-right: 0.12em;"><span style="display: inline-block; position: relative; width: 15.477em; height: 0px;"><span style="position: absolute; top: -3.403em; left: 50%; clip: rect(1.864em 1000em 2.917em -0.5em); margin-left: -3.125em;"><span class="mtext" id="MathJax-Span-17" style="font-family: MathJax_Main;">True Positives</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.032em; left: 50%; clip: rect(1.843em 1000em 3.099em -0.5em); margin-left: -7.679em;"><span class="mtext" id="MathJax-Span-18" style="font-family: MathJax_Main;">Total number of predicted positives</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.946em; left: 0em; clip: rect(2.473em 1000em 2.905em -0.536em);"><span style="border-left-width: 15.477em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.074em; vertical-align: 0em;"></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span></span><span class="mo" id="MathJax-Span-19" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mrow" id="MathJax-Span-20" style="padding-left: 0.278em;"><span class="mfrac" id="MathJax-Span-21" style="padding-left: 0.12em; padding-right: 0.12em;"><span style="display: inline-block; position: relative; width: 13.81em; height: 0px;"><span style="position: absolute; top: -3.403em; left: 50%; clip: rect(1.864em 1000em 2.917em -0.5em); margin-left: -3.125em;"><span class="mtext" id="MathJax-Span-22" style="font-family: MathJax_Main;">True Positives</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.04em; left: 50%; clip: rect(1.854em 1000em 3.099em -0.5em); margin-left: -6.845em;"><span class="texatom" id="MathJax-Span-23"><span class="mrow" id="MathJax-Span-24"><span class="mtext" id="MathJax-Span-25" style="font-family: MathJax_Main;">True Positives</span><span class="mo" id="MathJax-Span-26" style="font-family: MathJax_Main; padding-left: 0.222em;">+</span><span class="mtext" id="MathJax-Span-27" style="font-family: MathJax_Main; padding-left: 0.222em;">False positives</span></span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.946em; left: 0em; clip: rect(2.473em 1000em 2.905em -0.536em);"><span style="border-left-width: 13.81em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.074em; vertical-align: 0em;"></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 2.833em; vertical-align: -1.119em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-2">
+\dfrac{\text{True Positives}}{\text{Total number of predicted positives}}
+= \dfrac{\text{True Positives}}{\text{True Positives}+\text{False positives}}
+</script></p>
+<p><strong>Recall</strong>: Of all the patients that actually have cancer, what fraction did we correctly detect as having cancer?</p>
+<p><span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-28"><span style="display: inline-block; position: relative; width: 27.5em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.187em 1000em 3.797em -0.416em);"><span class="mrow" id="MathJax-Span-29"><span class="mrow" id="MathJax-Span-30"><span class="mfrac" id="MathJax-Span-31" style="padding-left: 0.12em; padding-right: 0.12em;"><span style="display: inline-block; position: relative; width: 11.668em; height: 0px;"><span style="position: absolute; top: -3.403em; left: 50%; clip: rect(1.864em 1000em 2.917em -0.5em); margin-left: -3.125em;"><span class="mtext" id="MathJax-Span-32" style="font-family: MathJax_Main;">True Positives</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.032em; left: 50%; clip: rect(1.843em 1000em 3.099em -0.511em); margin-left: -5.774em;"><span class="mtext" id="MathJax-Span-33" style="font-family: MathJax_Main;">Number of actual positives</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.946em; left: 0em; clip: rect(2.473em 1000em 2.905em -0.536em);"><span style="border-left-width: 11.668em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.074em; vertical-align: 0em;"></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span></span><span class="mo" id="MathJax-Span-34" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mrow" id="MathJax-Span-35" style="padding-left: 0.278em;"><span class="mfrac" id="MathJax-Span-36" style="padding-left: 0.12em; padding-right: 0.12em;"><span style="display: inline-block; position: relative; width: 14.049em; height: 0px;"><span style="position: absolute; top: -3.403em; left: 50%; clip: rect(1.864em 1000em 2.917em -0.5em); margin-left: -3.125em;"><span class="mtext" id="MathJax-Span-37" style="font-family: MathJax_Main;">True Positives</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.04em; left: 50%; clip: rect(1.854em 1000em 3.111em -0.5em); margin-left: -6.964em;"><span class="texatom" id="MathJax-Span-38"><span class="mrow" id="MathJax-Span-39"><span class="mtext" id="MathJax-Span-40" style="font-family: MathJax_Main;">True Positives</span><span class="mo" id="MathJax-Span-41" style="font-family: MathJax_Main; padding-left: 0.222em;">+</span><span class="mtext" id="MathJax-Span-42" style="font-family: MathJax_Main; padding-left: 0.222em;">False negatives</span></span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.946em; left: 0em; clip: rect(2.473em 1000em 2.905em -0.536em);"><span style="border-left-width: 14.049em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.074em; vertical-align: 0em;"></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 2.838em; vertical-align: -1.124em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-3">
+\dfrac{\text{True Positives}}{\text{Number of actual positives}}
+= \dfrac{\text{True Positives}}{\text{True Positives}+\text{False negatives}}
+</script></p>
+<p>These two metrics give us a better sense of how our classifier is doing. We want both precision and recall to be high.</p>
+<p>In the example at the beginning of the section, if we classify all patients as 0, then our <strong>recall</strong> will be <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-43"><span style="display: inline-block; position: relative; width: 4.286em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.205em 1000em 3.804em -0.416em);"><span class="mrow" id="MathJax-Span-44"><span class="mrow" id="MathJax-Span-45"><span class="mfrac" id="MathJax-Span-46" style="padding-left: 0.12em; padding-right: 0.12em;"><span style="display: inline-block; position: relative; width: 2.263em; height: 0px;"><span style="position: absolute; top: -3.403em; left: 50%; clip: rect(1.882em 1000em 2.927em -0.497em); margin-left: -0.268em;"><span class="mn" id="MathJax-Span-47" style="font-family: MathJax_Main;">0</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.032em; left: 50%; clip: rect(1.843em 1000em 3.11em -0.497em); margin-left: -1.071em;"><span class="mrow" id="MathJax-Span-48"><span class="mn" id="MathJax-Span-49" style="font-family: MathJax_Main;">0</span><span class="mo" id="MathJax-Span-50" style="font-family: MathJax_Main; padding-left: 0.222em;">+</span><span class="mi" id="MathJax-Span-51" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.222em;">f</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.946em; left: 0em; clip: rect(2.473em 1000em 2.905em -0.536em);"><span style="border-left-width: 2.263em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.074em; vertical-align: 0em;"></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span></span><span class="mo" id="MathJax-Span-52" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mn" id="MathJax-Span-53" style="font-family: MathJax_Main; padding-left: 0.278em;">0</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 2.824em; vertical-align: -1.132em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-4">\dfrac{0}{0 + f} = 0</script>, so despite having a lower error percentage, we can quickly see it has worse recall.</p>
+<h1> <span class="mw-headline" id="Trading_Off_Precision_and_Recall">Trading Off Precision and Recall</span></h1>
+<p>We might want a <strong>confident</strong> prediction of two classes using logistic regression. One way is to increase our threshold:</p>
+<blockquote>
+  <p>Predict 1 if: <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-54"><span style="display: inline-block; position: relative; width: 5em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.797em 1000em 3.156em -0.488em);"><span class="mrow" id="MathJax-Span-55"><span class="msubsup" id="MathJax-Span-56"><span style="display: inline-block; position: relative; width: 1.102em; height: 0px;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.854em 1000em 2.916em -0.488em);"><span class="mi" id="MathJax-Span-57" style="font-family: MathJax_Math; font-style: italic;">h</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.572em; left: 0.67em;"><span class="mi" id="MathJax-Span-58" style="font-size: 70.7%; font-family: MathJax_Math; font-style: italic;">θ</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span><span class="mo" id="MathJax-Span-59" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-60" style="font-family: MathJax_Math; font-style: italic;">x</span><span class="mo" id="MathJax-Span-61" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-62" style="font-family: MathJax_Main; padding-left: 0.278em;">≥</span><span class="mn" id="MathJax-Span-63" style="font-family: MathJax_Main; padding-left: 0.278em;">0.7</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.263em; vertical-align: -0.316em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-5">h_\theta(x) \geq 0.7</script></p>
+  <p>Predict 0 if: <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-64"><span style="display: inline-block; position: relative; width: 5em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.797em 1000em 3.156em -0.488em);"><span class="mrow" id="MathJax-Span-65"><span class="msubsup" id="MathJax-Span-66"><span style="display: inline-block; position: relative; width: 1.102em; height: 0px;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.854em 1000em 2.916em -0.488em);"><span class="mi" id="MathJax-Span-67" style="font-family: MathJax_Math; font-style: italic;">h</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.572em; left: 0.67em;"><span class="mi" id="MathJax-Span-68" style="font-size: 70.7%; font-family: MathJax_Math; font-style: italic;">θ</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span><span class="mo" id="MathJax-Span-69" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-70" style="font-family: MathJax_Math; font-style: italic;">x</span><span class="mo" id="MathJax-Span-71" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-72" style="font-family: MathJax_Main; padding-left: 0.278em;">&lt;</span><span class="mn" id="MathJax-Span-73" style="font-family: MathJax_Main; padding-left: 0.278em;">0.7</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.263em; vertical-align: -0.316em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-6">h_\theta(x) < 0.7</script></p>
+</blockquote>
+<p>This way, we only predict cancer if the patient has a 70% chance.</p>
+<p>Doing this, we will have <strong>higher precision</strong> but <strong>lower recall</strong> (refer to the definitions in the previous section).</p>
+<p>In the opposite example, we can lower our threshold:</p>
+<blockquote>
+  <p>Predict 1 if: <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-74"><span style="display: inline-block; position: relative; width: 5em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.797em 1000em 3.156em -0.488em);"><span class="mrow" id="MathJax-Span-75"><span class="msubsup" id="MathJax-Span-76"><span style="display: inline-block; position: relative; width: 1.102em; height: 0px;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.854em 1000em 2.916em -0.488em);"><span class="mi" id="MathJax-Span-77" style="font-family: MathJax_Math; font-style: italic;">h</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.572em; left: 0.67em;"><span class="mi" id="MathJax-Span-78" style="font-size: 70.7%; font-family: MathJax_Math; font-style: italic;">θ</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span><span class="mo" id="MathJax-Span-79" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-80" style="font-family: MathJax_Math; font-style: italic;">x</span><span class="mo" id="MathJax-Span-81" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-82" style="font-family: MathJax_Main; padding-left: 0.278em;">≥</span><span class="mn" id="MathJax-Span-83" style="font-family: MathJax_Main; padding-left: 0.278em;">0.3</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.263em; vertical-align: -0.316em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-7">h_\theta(x) \geq 0.3</script></p>
+  <p>Predict 0 if: <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-84"><span style="display: inline-block; position: relative; width: 5em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.797em 1000em 3.156em -0.488em);"><span class="mrow" id="MathJax-Span-85"><span class="msubsup" id="MathJax-Span-86"><span style="display: inline-block; position: relative; width: 1.102em; height: 0px;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.854em 1000em 2.916em -0.488em);"><span class="mi" id="MathJax-Span-87" style="font-family: MathJax_Math; font-style: italic;">h</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.572em; left: 0.67em;"><span class="mi" id="MathJax-Span-88" style="font-size: 70.7%; font-family: MathJax_Math; font-style: italic;">θ</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span><span class="mo" id="MathJax-Span-89" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-90" style="font-family: MathJax_Math; font-style: italic;">x</span><span class="mo" id="MathJax-Span-91" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-92" style="font-family: MathJax_Main; padding-left: 0.278em;">&lt;</span><span class="mn" id="MathJax-Span-93" style="font-family: MathJax_Main; padding-left: 0.278em;">0.3</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.263em; vertical-align: -0.316em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-8">h_\theta(x) < 0.3</script></p>
+</blockquote>
+<p>That way, we get a very <strong>safe</strong> prediction. This will cause <strong>higher recall</strong> but <strong>lower precision</strong>.</p>
+<blockquote>
+  <p>The greater the threshold, the greater the precision and the lower the recall.</p>
+  <p>The lower the threshold, the greater the recall and the lower the precision.</p>
+</blockquote>
+<p>In order to turn these two metrics into one single number, we can take the <strong>F value</strong>. </p>
+<p>One way is to take the <strong>average</strong>:</p>
+<p><span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-94"><span style="display: inline-block; position: relative; width: 2.976em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.188em 1000em 3.592em -0.416em);"><span class="mrow" id="MathJax-Span-95"><span class="mrow" id="MathJax-Span-96"><span class="mfrac" id="MathJax-Span-97" style="padding-left: 0.12em; padding-right: 0.12em;"><span style="display: inline-block; position: relative; width: 2.68em; height: 0px;"><span style="position: absolute; top: -3.403em; left: 50%; clip: rect(1.865em 1000em 2.988em -0.503em); margin-left: -1.28em;"><span class="mrow" id="MathJax-Span-98"><span class="mi" id="MathJax-Span-99" style="font-family: MathJax_Math; font-style: italic;">P</span><span class="mo" id="MathJax-Span-100" style="font-family: MathJax_Main; padding-left: 0.222em;">+</span><span class="mi" id="MathJax-Span-101" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.222em;">R</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.04em; left: 50%; clip: rect(1.882em 1000em 2.906em -0.487em); margin-left: -0.268em;"><span class="mn" id="MathJax-Span-102" style="font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.946em; left: 0em; clip: rect(2.473em 1000em 2.905em -0.536em);"><span style="border-left-width: 2.68em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.074em; vertical-align: 0em;"></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 2.579em; vertical-align: -0.866em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-9">\dfrac{P+R}{2}</script></p>
+<p>This does not work well. If we predict all <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-103"><span style="display: inline-block; position: relative; width: 2.262em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.882em 1000em 3.11em -0.515em);"><span class="mrow" id="MathJax-Span-104"><span class="mi" id="MathJax-Span-105" style="font-family: MathJax_Math; font-style: italic;">y</span><span class="mo" id="MathJax-Span-106" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mn" id="MathJax-Span-107" style="font-family: MathJax_Main; padding-left: 0.278em;">0</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.097em; vertical-align: -0.258em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-10">y = 0</script> then that will bring the average up despite having 0 recall. If we predict all examples as <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-108"><span style="display: inline-block; position: relative; width: 2.262em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.882em 1000em 3.11em -0.515em);"><span class="mrow" id="MathJax-Span-109"><span class="mi" id="MathJax-Span-110" style="font-family: MathJax_Math; font-style: italic;">y</span><span class="mo" id="MathJax-Span-111" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mn" id="MathJax-Span-112" style="font-family: MathJax_Main; padding-left: 0.278em;">1</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.097em; vertical-align: -0.258em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-11">y = 1</script>, then the very high recall will bring up the average despite having 0 precision.</p>
+<p>A better way is to compute the <strong>F Score</strong> (or <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-113"><span style="display: inline-block; position: relative; width: 3.75em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.867em 1000em 3.055em -0.506em);"><span class="mrow" id="MathJax-Span-114"><span class="msubsup" id="MathJax-Span-115"><span style="display: inline-block; position: relative; width: 1.162em; height: 0px;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.867em 1000em 2.905em -0.506em);"><span class="mi" id="MathJax-Span-116" style="font-family: MathJax_Math; font-style: italic;">F</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.576em; left: 0.73em;"><span class="mn" id="MathJax-Span-117" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span><span class="mtext" id="MathJax-Span-118" style="font-family: MathJax_Main;">&nbsp;</span><span class="mi" id="MathJax-Span-119" style="font-family: MathJax_Math; font-style: italic;">s</span><span class="mi" id="MathJax-Span-120" style="font-family: MathJax_Math; font-style: italic;">c</span><span class="mi" id="MathJax-Span-121" style="font-family: MathJax_Math; font-style: italic;">o</span><span class="mi" id="MathJax-Span-122" style="font-family: MathJax_Math; font-style: italic;">r</span><span class="mi" id="MathJax-Span-123" style="font-family: MathJax_Math; font-style: italic;">e</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.047em; vertical-align: -0.189em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-12">F_1\ score</script>):</p>
+<p><span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-124"><span style="display: inline-block; position: relative; width: 8.036em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(1.188em 1000em 3.674em -0.511em);"><span class="mrow" id="MathJax-Span-125"><span class="mtext" id="MathJax-Span-126" style="font-family: MathJax_Main;">F Score</span><span class="mo" id="MathJax-Span-127" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mn" id="MathJax-Span-128" style="font-family: MathJax_Main; padding-left: 0.278em;">2</span><span class="mrow" id="MathJax-Span-129" style="padding-left: 0.167em;"><span class="mfrac" id="MathJax-Span-130" style="padding-left: 0.12em; padding-right: 0.12em;"><span style="display: inline-block; position: relative; width: 2.68em; height: 0px;"><span style="position: absolute; top: -3.403em; left: 50%; clip: rect(1.865em 1000em 2.927em -0.503em); margin-left: -0.714em;"><span class="mrow" id="MathJax-Span-131"><span class="mi" id="MathJax-Span-132" style="font-family: MathJax_Math; font-style: italic;">P</span><span class="mi" id="MathJax-Span-133" style="font-family: MathJax_Math; font-style: italic;">R</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.04em; left: 50%; clip: rect(1.865em 1000em 2.988em -0.503em); margin-left: -1.28em;"><span class="mrow" id="MathJax-Span-134"><span class="mi" id="MathJax-Span-135" style="font-family: MathJax_Math; font-style: italic;">P</span><span class="mo" id="MathJax-Span-136" style="font-family: MathJax_Main; padding-left: 0.222em;">+</span><span class="mi" id="MathJax-Span-137" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.222em;">R</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span><span style="position: absolute; top: -2.946em; left: 0em; clip: rect(2.473em 1000em 2.905em -0.536em);"><span style="border-left-width: 2.68em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.074em; vertical-align: 0em;"></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 2.682em; vertical-align: -0.969em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-13">
+\text{F Score} = 2\dfrac{PR}{P + R}
+</script></p>
+<p>In order for the F Score to be large, both precision and recall must be large.</p>
+<p>We want to train precision and recall on the <strong>cross validation set</strong> so as not to bias our test set.</p>
+<h1> <span class="mw-headline" id="Data_for_Machine_Learning">Data for Machine Learning</span></h1>
+<p>How much data should we train on?</p>
+<p>In certain cases, an "inferior algorithm," if given enough data, can outperform a superior algorithm with less data.</p>
+<p>We must choose our features to have <strong>enough</strong> information. A useful test is: Given input <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-138"><span style="display: inline-block; position: relative; width: 0.595em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(2.105em 1000em 2.916em -0.501em);"><span class="mrow" id="MathJax-Span-139"><span class="mi" id="MathJax-Span-140" style="font-family: MathJax_Math; font-style: italic;">x</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.572em; vertical-align: -0.014em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-14">x</script>, would a human expert be able to confidently predict <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-141"><span style="display: inline-block; position: relative; width: 0.536em; height: 0px; font-size: 126%;"><span style="position: absolute; top: -2.726em; left: 0em; clip: rect(2.106em 1000em 3.11em -0.515em);"><span class="mrow" id="MathJax-Span-142"><span class="mi" id="MathJax-Span-143" style="font-family: MathJax_Math; font-style: italic;">y</span></span><span style="display: inline-block; width: 0px; height: 2.726em;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.815em; vertical-align: -0.258em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-15">y</script>?</p>
+<p><strong>Rationale for large data</strong>: if we have a <strong>low bias</strong> algorithm (many features or hidden units making a very complex function), then the larger the training set we use, the less we will have overfitting (and the more accurate the algorithm will be on the test set).</p>
+<h1> <span class="mw-headline" id="Quiz_instructions">Quiz instructions</span></h1>
+<p>When the quiz instructions tell you to enter a value to "two decimal digits", what it really means is "two significant digits". So, just for example, the value 0.0123 should be entered as "0.012", not "0.01".</p>
+<p></p><hr>
+Next: <a href="https://share.coursera.org/wiki/index.php/ML:Support_Vector_Machines_(SVMs)" title="ML:Support Vector Machines (SVMs)">Support Vector Machines (SVMs)</a>  Back to Index:  <a href="https://share.coursera.org/wiki/index.php/ML:Main" title="ML:Main">Main</a><p></p>
+<p></p>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 2/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key crowdwiki:pcache:idhash:111-0!*!0!!en!*!* and timestamp 20151114100925 -->
+</div><div class="printfooter">
+Retrieved from "<a href="https://share.coursera.org/wiki/index.php?title=ML:Machine_Learning_System_Design&oldid=32710">https://share.coursera.org/wiki/index.php?title=ML:Machine_Learning_System_Design&amp;oldid=32710</a>"</div>
+					<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="https://share.coursera.org/wiki/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="https://share.coursera.org/wiki/index.php/Category:ML:Lecture_Notes" title="Category:ML:Lecture Notes">ML:Lecture Notes</a></li></ul></div></div>					<!-- end content -->
+									</div>
+			</div><!-- end of MAINCONTENT div -->	
+		</div>
+	
+	</div><!-- end of MBODY div -->
+	<div class="visualClear"></div>
+	<div id="footer">
+		<table style="width:100%;text-align:center;">
+			<tbody><tr>
+				<td rowspan="2" style="width:5%;text-align:center;vertical-align:top;padding-right:1em;white-space:nowrap">
+						</td>
+				<td align="center">
+			<ul id="f-list">
+					<li id="f-lastmod"> This page was last modified on 26 October 2015, at 21:36.</li>
+					<li id="f-viewcount">This page has been accessed 12,258 times.</li>
+					<li id="f-privacy"><a href="https://share.coursera.org/wiki/index.php/Coursera:Privacy_policy" title="Coursera:Privacy policy">Privacy policy</a></li>
+					<li id="f-about"><a href="https://share.coursera.org/wiki/index.php/Coursera:About" title="Coursera:About">About Coursera</a></li>
+					<li id="f-disclaimer"><a href="https://share.coursera.org/wiki/index.php/Coursera:General_disclaimer" title="Coursera:General disclaimer">Disclaimers</a></li>
+</ul></td>
+				<td rowspan="2" style="width:5%;text-align:center;vertical-align:top;padding-left:1em;white-space:nowrap"><div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="./ML_Machine Learning System Design - Coursera_files/poweredby_mediawiki_88x31.png" height="31" width="88" alt="Powered by MediaWiki"></a></div></td>
+			</tr>
+			<tr>
+				<td><div id="skin-info">
+					Mozilla Cavendish Theme based on Cavendish style by Gabriel Wicke modified by <a href="http://www.dasch-tour.de/" target="_blank">DaSch</a><br>
+					<a href="http://sourceforge.net/projects/wecowi/">Sourceforge Projectpage</a> – <a href="https://sourceforge.net/apps/trac/wecowi/wiki">Bug Reports</a> – Skin-Version: 1.2.0				</div></td>
+			</tr>
+		</tbody></table>
+	</div><!-- end of the FOOTER div -->
+</div><!-- end of the CONTAINER div -->
+<!-- scripts and debugging information -->
+<script>if(window.mw){
+	mw.loader.load(["mediawiki.user", "mediawiki.util", "mediawiki.page.ready", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax", "mediawiki.action.watch.ajax"]);
+}
+</script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/load(5).php"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/jquery.checkboxShiftClick.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/jquery.cookie.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/jquery.makeCollapsible.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/jquery.messageBox.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/jquery.mwPrototypes.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/jquery.placeholder.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/mediawiki.action.watch.ajax.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/mediawiki.language.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/mediawiki.user.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/mediawiki.util.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/wikibits.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/ajax.js"></script><script type="text/javascript" src="./ML_Machine Learning System Design - Coursera_files/mediawiki.page.ready.js"></script>
+<script src="./ML_Machine Learning System Design - Coursera_files/MathJax.js"></script>
+<script>if(window.mw){
+	mw.user.options.set({"ccmeonemails": 0, "cols": 80, "date": "default", "diffonly": 0, "disablemail": 0, "disablesuggest": 0, "editfont": "default", "editondblclick": 0, "editsection": 1, "editsectiononrightclick": 0, "enotifminoredits": 0, "enotifrevealaddr": 0, "enotifusertalkpages": 1, "enotifwatchlistpages": 0, "extendwatchlist": 0, "externaldiff": 0, "externaleditor": 0, "fancysig": 0, "forceeditsummary": 0, "gender": "unknown", "hideminor": 0, "hidepatrolled": 0, "highlightbroken": 1, "imagesize": 2, "justify": 0, "math": 1, "minordefault": 0, "newpageshidepatrolled": 0, "nocache": 0, "noconvertlink": 0, "norollbackdiff": 0, "numberheadings": 0, "previewonfirst": 0, "previewontop": 1, "quickbar": 5, "rcdays": 7, "rclimit": 50, "rememberpassword": 0, "rows": 25, "searchlimit": 20, "showhiddencats": 0, "showjumplinks": 1, "shownumberswatching": 1, "showtoc": 1, "showtoolbar": 1, "skin": "cavendish", "stubthreshold": 0, "thumbsize": 2, "underline": 2, "uselivepreview": 0, "usenewrc": 0, "watchcreations": 0, "watchdefault": 0, "watchdeletion": 0, "watchlistdays": 3, "watchlisthideanons": 0, "watchlisthidebots": 0, "watchlisthideliu": 0, "watchlisthideminor": 0, "watchlisthideown": 0, "watchlisthidepatrolled": 0, "watchmoves": 0, "wllimit": 250, "openid-hide": 0, "openid-update-on-login-nickname": false, "openid-update-on-login-email": false, "openid-update-on-login-fullname": false, "openid-update-on-login-language": false, "openid-update-on-login-timezone": false, "variant": "en", "language": "en", "searchNs0": true, "searchNs1": false, "searchNs2": false, "searchNs3": false, "searchNs4": false, "searchNs5": false, "searchNs6": false, "searchNs7": false, "searchNs8": false, "searchNs9": false, "searchNs10": false, "searchNs11": false, "searchNs12": false, "searchNs13": false, "searchNs14": false, "searchNs15": false, "searchNs500": true, "searchNs502": true, "searchNs504": true, "searchNs506": true, "searchNs508": true, "searchNs510": true, "searchNs512": true, "searchNs514": true, "searchNs516": true, "searchNs518": true});
+	;
+	mw.loader.state({"user.options": "ready"});
+}
+</script><script>if(window.mw){
+	mw.user.tokens.set({"editToken": "07970a4ab1225cb8f4c67426da6474bc+\\", "watchToken": "3251a23887a92d5d656530f101f3f4d4+\\"});
+	;
+	mw.loader.state({"user.tokens": "ready"});
+}
+</script><!-- Served in 0.049 secs. --><div style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Main, sans-serif;"></div></body></html>
