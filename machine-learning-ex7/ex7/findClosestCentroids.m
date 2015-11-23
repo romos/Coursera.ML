@@ -20,12 +20,15 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
-
-
-
-
-
-
+m = size(X,1);
+for i=1:m,
+    %[ x(i) - mu(k) ] // for all mu (centroids)
+    subtraction = bsxfun(@minus,centroids,X(i,:));
+    % ||x(i) - mu(k)||^2 // for all mu (centroids)
+    squared_norms = sum(subtraction.^2,2);
+    %get the minimum index of the norm, i.e. the closest centroid index
+    [~,idx(i,1)] = min(squared_norms);
+end
 
 % =============================================================
 
