@@ -21,16 +21,10 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 
-
-
-
-
-
-
-
-
+mu = mean(X,1)';
+sigma2 = ((1/(size(X,1))) .* sum(bsxfun(@minus,X,mu') .^ 2))';
+% sigma2 = var(X,1)';
 
 % =============================================================
-
 
 end
